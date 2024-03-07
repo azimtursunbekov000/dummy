@@ -28,7 +28,7 @@ class UserRepositoryImpl implements UserRepository {
 
   @override
   Future<UserPreviewModel> getUserById({required int id}) async {
-  try {
+    try {
       Response response = await apiRequester.toGet('user/$id');
 
       log('getUserById response statusCode == ${response.statusCode}');
