@@ -49,7 +49,7 @@ class ListViewSeparatedContent extends StatelessWidget {
                     context,
                     MaterialPageRoute(
                       builder: (context) => UserDetailScreen(
-                        userPreviewModel: userModelList.data[index],
+                       id: int.parse(userModelList.data[index].id),
                       ),
                     ),
                   );

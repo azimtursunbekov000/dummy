@@ -15,7 +15,9 @@ class MainUserScreen extends StatelessWidget {
         UserUseCase(
           userRepository: UserRepositoryImpl(),
         ),
-      )..add(GetAllUserEvent(),),
+      )..add(
+          GetAllUserEvent(),
+        ),
       child: Scaffold(
         appBar: AppBar(
           backgroundColor: Colors.blue,
