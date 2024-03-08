@@ -10,35 +10,16 @@ class UserRepositoryImpl implements UserRepository {
   ApiRequester apiRequester = ApiRequester();
 
   @override
-  Future<List<UserPreviewModel>> getAllUsers() async {
+  Future<DataModel> getAllUsers() async {
     try {
       Response response = await apiRequester.toGet('user');
 
       log('getAllUsers response statusCode == ${response.statusCode}');
       log('getAllUsers response data == ${response.data}');
 
-      return response.data
-          .map<UserPreviewModel>((value) => UserPreviewModel.fromJson(value))
-          .toList();
+      return DataModel.fromJson(response.data);
     } catch (e) {
-      log('error $e');
-      throw CatchException.convertException(e);
-    }
-  }
-
-  @override
-  Future<UserPreviewModel> getUserById({required int id}) async {
-    try {
-      Response response = await apiRequester.toGet('user/$id');
-
-      log('getUserById response statusCode == ${response.statusCode}');
-      log('getUserById response data == ${response.data}');
-
-      return response.data
-          .map<UserPreviewModel>((value) => UserPreviewModel.fromJson(value))
-          .toList();
-    } catch (e) {
-      log('error $e');
+      print('error $e');
       throw CatchException.convertException(e);
     }
   }

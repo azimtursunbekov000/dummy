@@ -1,9 +1,9 @@
 import 'package:dio/dio.dart';
 import 'package:dummy/internal/helpers/catch_exception.dart';
 
-
 class ApiRequester {
-  final String url = 'https://dummyapi.io/docs/';
+  final String url = 'https://dummyapi.io/data/v1/';
+  final String appId = '65e98d8edfd2145ec586984d'; // Ваш appId
 
   Future<Dio> initDio() async {
     return Dio(
@@ -20,6 +20,8 @@ class ApiRequester {
     Dio dio = await initDio();
 
     try {
+      // Добавляем заголовок app-id к каждому GET запросу
+      dio.options.headers['app-id'] = appId;
       return dio.get(url);
     } catch (e) {
       throw CatchException.convertException(e);
@@ -30,6 +32,8 @@ class ApiRequester {
     Dio dio = await initDio();
 
     try {
+      // Добавляем заголовок app-id к каждому POST запросу
+      dio.options.headers['app-id'] = appId;
       return dio.post(url);
     } catch (e) {
       throw CatchException.convertException(e);
@@ -40,6 +44,8 @@ class ApiRequester {
     Dio dio = await initDio();
 
     try {
+      // Добавляем заголовок app-id к каждому PUT запросу
+      dio.options.headers['app-id'] = appId;
       return dio.put(url);
     } catch (e) {
       throw CatchException.convertException(e);
@@ -50,6 +56,8 @@ class ApiRequester {
     Dio dio = await initDio();
 
     try {
+      // Добавляем заголовок app-id к каждому DELETE запросу
+      dio.options.headers['app-id'] = appId;
       return dio.delete(url);
     } catch (e) {
       throw CatchException.convertException(e);

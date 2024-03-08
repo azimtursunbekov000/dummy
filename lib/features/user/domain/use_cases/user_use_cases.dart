@@ -6,11 +6,9 @@ class UserUseCase {
 
   UserUseCase({required this.userRepository});
 
-  Future<List<UserPreviewModel>> getAllUsers() async {
+  Future<DataModel> getAllUsers() async {
     return await userRepository.getAllUsers();
   }
 
-  Future<UserPreviewModel> getUserById({required int id}) async {
-    return await userRepository.getUserById(id: id);
-  }
+  
 }

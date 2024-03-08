@@ -15,7 +15,7 @@ class UserBloc extends Bloc<UserEvent, UserState> {
     on<GetAllUserEvent>((event, emit) async {
       emit(UserLoadingState());
       try {
-        final List<UserPreviewModel> userModelList =
+        final DataModel userModelList =
             await userUseCase.getAllUsers();
 
         emit(UserLoadedState(userModelList: userModelList));
@@ -25,16 +25,6 @@ class UserBloc extends Bloc<UserEvent, UserState> {
       }
     });
 
-    on<GetUserByIdEvent>((event, emit) async {
-      emit(UserLoadingState());
-      try {
-        final UserPreviewModel userPreviewModel =
-            await userUseCase.getUserById(id: event.id);
-        emit(UserDetailLoadedState(userPreviewModel: userPreviewModel));
-        log('emit ===   $userPreviewModel');
-      } catch (e) {
-        emit(UserErrorState(error: CatchException.convertException(e)));
-      }
-    });
+    
   }
 }

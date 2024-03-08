@@ -8,16 +8,12 @@ final class UserInitialState extends UserState {}
 final class UserLoadingState extends UserState {}
 
 final class UserLoadedState extends UserState {
-  final List<UserPreviewModel> userModelList;
+  final DataModel userModelList;
 
   UserLoadedState({required this.userModelList});
 }
 
-final class UserDetailLoadedState extends UserState {
-  final UserPreviewModel userPreviewModel;
 
-  UserDetailLoadedState({required this.userPreviewModel});
-}
 
 final class UserErrorState extends UserState {
   final CatchException error;
