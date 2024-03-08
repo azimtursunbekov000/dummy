@@ -48,7 +48,9 @@ class ListViewSeparatedContent extends StatelessWidget {
                   Navigator.push(
                     context,
                     MaterialPageRoute(
-                      builder: (context) => const UserDetailScreen(),
+                      builder: (context) => UserDetailScreen(
+                        userPreviewModel: userModelList.data[index],
+                      ),
                     ),
                   );
                 },

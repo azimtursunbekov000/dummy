@@ -13,7 +13,11 @@ final class UserLoadedState extends UserState {
   UserLoadedState({required this.userModelList});
 }
 
+final class UserDetailLoadedState extends UserState {
+  final UserPreview userFullList;
 
+  UserDetailLoadedState({required this.userFullList});
+}
 
 final class UserErrorState extends UserState {
   final CatchException error;

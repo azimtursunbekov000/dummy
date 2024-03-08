@@ -11,12 +11,12 @@ final GoRouter router = GoRouter(
         return const MainUserScreen();
       },
       routes: <RouteBase>[
-        GoRoute(
-          path: RouterConstants.user_detail,
-          builder: (BuildContext context, GoRouterState state) {
-            return const UserDetailScreen();
-          },
-        ),
+        // GoRoute(
+        //   path: RouterConstants.user_detail,
+        //   builder: (BuildContext context, GoRouterState state) {
+        //     return  UserDetailScreen();
+        //   },
+        // ),
       ],
     ),
   ],

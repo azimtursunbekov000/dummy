@@ -23,4 +23,18 @@ class UserRepositoryImpl implements UserRepository {
       throw CatchException.convertException(e);
     }
   }
+
+  @override
+  Future<UserPreview>getUserDetailById({required int id}) async {
+    try {
+      Response response = await apiRequester.toGet('user/$id');
+      log('getAllUsers response statusCode == ${response.statusCode}');
+      log('getAllUsers response data == ${response.data}');
+
+      return UserPreview.fromJson(response.data);
+    } catch (e) {
+      print('error by id $e'.toString());
+      throw CatchException.convertException(e);
+    }
+  }
 }
