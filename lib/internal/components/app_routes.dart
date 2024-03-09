@@ -14,7 +14,7 @@ final GoRouter router = GoRouter(
         // GoRoute(
         //   path: RouterConstants.user_detail,
         //   builder: (BuildContext context, GoRouterState state) {
-        //     return  UserDetailScreen();
+        //     return  UserDetailScreen(name: '',);
         //   },
         // ),
       ],
@@ -23,6 +23,6 @@ final GoRouter router = GoRouter(
 );
 
 class RouterConstants {
-  static String mainUser = 'main_user';
+  static String mainUser = '/main_user';
   static String user_detail = '/user_detail';
 }

@@ -23,6 +23,7 @@ class MainUserScreen extends StatelessWidget {
           backgroundColor: Colors.blue,
         ),
         body: SingleChildScrollView(
+          // padding: EdgeInsets.zero,
           physics: const ScrollPhysics(),
           child: BlocConsumer<UserBloc, UserState>(
             listener: (context, state) {},

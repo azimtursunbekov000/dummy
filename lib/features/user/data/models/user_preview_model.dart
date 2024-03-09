@@ -30,7 +30,6 @@ class UserPreview {
   final String lastName;
   final String picture;
   final UserFull? userFull;
-  final Location? location;
 
   UserPreview({
     required this.id,
@@ -38,8 +37,7 @@ class UserPreview {
     required this.firstName,
     required this.lastName,
     required this.picture,
-    required this.userFull,
-    required this.location,
+    this.userFull,
   });
 
   factory UserPreview.fromJson(Map<String, dynamic> json) {
@@ -49,8 +47,8 @@ class UserPreview {
       firstName: json['firstName'],
       lastName: json['lastName'],
       picture: json['picture'],
-      userFull: json["userFull"] == null ? null : UserFull.fromJson(json['userFull']),
-      location: json["location"] == null ? null : Location.fromJson(json['location']),
+      userFull:
+          json["userFull"] == null ? null : UserFull.fromJson(json['userFull']),
     );
   }
 }

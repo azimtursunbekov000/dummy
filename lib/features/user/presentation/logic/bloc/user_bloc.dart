@@ -18,7 +18,7 @@ class UserBloc extends Bloc<UserEvent, UserState> {
         final DataModel userModelList = await userUseCase.getAllUsers();
 
         emit(UserLoadedState(userModelList: userModelList));
-        log('emit ===   $userModelList');
+        // log('emit ===   $userModelList');
       } catch (e) {
         emit(UserErrorState(error: CatchException.convertException(e)));
       }
@@ -32,6 +32,7 @@ class UserBloc extends Bloc<UserEvent, UserState> {
             await userUseCase.getUserDetailByd(id: event.id);
         emit(UserDetailLoadedState(userFullList: userFullList));
       } catch (e) {
+        print('фывфвфывфывфвфвфы$e');
         emit(UserErrorState(error: CatchException.convertException(e)));
       }
     });

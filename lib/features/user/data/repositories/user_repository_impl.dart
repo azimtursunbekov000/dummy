@@ -25,11 +25,11 @@ class UserRepositoryImpl implements UserRepository {
   }
 
   @override
-  Future<UserPreview>getUserDetailById({required int id}) async {
+  Future<UserPreview> getUserDetailById({required String id}) async {
     try {
       Response response = await apiRequester.toGet('user/$id');
-      log('getAllUsers response statusCode == ${response.statusCode}');
-      log('getAllUsers response data == ${response.data}');
+      log('getUserDEtail response statusCode == ${response.statusCode}');
+      log('getUserDEtail response data == ${response.data}');
 
       return UserPreview.fromJson(response.data);
     } catch (e) {

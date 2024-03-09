@@ -10,7 +10,7 @@ class UserUseCase {
     return await userRepository.getAllUsers();
   }
 
-  Future<UserPreview> getUserDetailByd({required int id}) async {
+  Future<UserPreview> getUserDetailByd({required String id}) async {
     return await userRepository.getUserDetailById(id: id);
   }
 }

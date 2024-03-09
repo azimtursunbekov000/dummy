@@ -6,8 +6,8 @@ abstract class UserRepository {
   /// EN: Getting all users
   Future<DataModel> getAllUsers();
 
-  /// RU: Получение детальной информации по  айди
+  /// RU: Получение детальной информации по  имени
   ///
-  /// EN: Get user detail by id
-  Future<UserPreview> getUserDetailById({required int id});
+  /// EN: Get user detail by name
+  Future<UserPreview> getUserDetailById({required String id});
 }

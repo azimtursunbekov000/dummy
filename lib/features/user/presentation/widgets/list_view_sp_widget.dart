@@ -6,8 +6,8 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class ListViewSeparatedContent extends StatelessWidget {
   const ListViewSeparatedContent({
-    super.key,
-  });
+    Key? key,
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -49,7 +49,7 @@ class ListViewSeparatedContent extends StatelessWidget {
                     context,
                     MaterialPageRoute(
                       builder: (context) => UserDetailScreen(
-                       id: int.parse(userModelList.data[index].id),
+                        id: userModelList.data[index].id,
                       ),
                     ),
                   );

@@ -6,7 +6,7 @@ sealed class UserEvent {}
 class GetAllUserEvent extends UserEvent {}
 
 class GetUserByIdEvent extends UserEvent {
-  final int id;
+  final String id;
 
   GetUserByIdEvent({required this.id});
 }
