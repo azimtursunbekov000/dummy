@@ -1,14 +1,14 @@
-import 'package:dummy/features/user/presentation/screens/main_user_screen.dart';
+import 'package:dummy/internal/components/bottom_nav_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 
 final GoRouter router = GoRouter(
-  initialLocation: '/main_user',
+  initialLocation: '/bottom_nav_bar',
   routes: <RouteBase>[
     GoRoute(
-      path: '/main_user',
+      path: '/bottom_nav_bar',
       builder: (BuildContext context, GoRouterState state) {
-        return const MainUserScreen();
+        return const BottomNavBarScreen();
       },
     ),
     // GoRoute(
@@ -23,4 +23,5 @@ final GoRouter router = GoRouter(
 class RouterConstants {
   static String mainUser = '/main_user';
   static String user_detail = '/user_detail';
+  static String bottom_nav_bar = '/bottom_nav_bar';
 }
