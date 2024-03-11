@@ -6,11 +6,15 @@ class UserUseCase {
 
   UserUseCase({required this.userRepository});
 
-  Future<DataModel> getAllUsers() async {
+  Future<UserDataModel> getAllUsers() async {
     return await userRepository.getAllUsers();
   }
 
-  Future<UserPreview> getUserDetailByd({required String id}) async {
+  Future<UserPreview> getUserDetailById({required String id}) async {
     return await userRepository.getUserDetailById(id: id);
+  }
+
+  Future<void> createUser({required UserPreview user}) async {
+    return await userRepository.createUser(user: user);
   }
 }

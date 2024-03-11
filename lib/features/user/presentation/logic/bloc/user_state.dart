@@ -3,24 +3,26 @@ part of 'user_bloc.dart';
 @immutable
 sealed class UserState {}
 
-final class UserInitialState extends UserState {}
+class UserInitialState extends UserState {}
 
-final class UserLoadingState extends UserState {}
+class UserLoadingState extends UserState {}
 
-final class UserLoadedState extends UserState {
-  final DataModel userModelList;
+class UserLoadedState extends UserState {
+  final UserDataModel userModelList;
 
   UserLoadedState({required this.userModelList});
 }
 
-final class UserDetailLoadedState extends UserState {
-  final UserPreview userFullList;
+class UserDetailLoadedState extends UserState {
+  final UserPreview userPreview;
 
-  UserDetailLoadedState({required this.userFullList});
+  UserDetailLoadedState({required this.userPreview});
 }
 
-final class UserErrorState extends UserState {
+class UserErrorState extends UserState {
   final CatchException error;
 
   UserErrorState({required this.error});
 }
+
+class UserCreatedState extends UserState {}

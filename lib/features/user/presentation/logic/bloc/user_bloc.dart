@@ -1,5 +1,3 @@
-import 'dart:developer';
-
 import 'package:bloc/bloc.dart';
 import 'package:dummy/features/user/data/models/user_preview_model.dart';
 import 'package:dummy/features/user/domain/use_cases/user_use_cases.dart';
@@ -15,9 +13,9 @@ class UserBloc extends Bloc<UserEvent, UserState> {
     on<GetAllUserEvent>((event, emit) async {
       emit(UserLoadingState());
       try {
-        final DataModel userModelList = await userUseCase.getAllUsers();
+        final UserDataModel userModel = await userUseCase.getAllUsers();
 
-        emit(UserLoadedState(userModelList: userModelList));
+        emit(UserLoadedState(userModelList: userModel));
         // log('emit ===   $userModelList');
       } catch (e) {
         emit(UserErrorState(error: CatchException.convertException(e)));
@@ -28,11 +26,21 @@ class UserBloc extends Bloc<UserEvent, UserState> {
     on<GetUserByIdEvent>((event, emit) async {
       emit(UserLoadingState());
       try {
-        final UserPreview userFullList =
-            await userUseCase.getUserDetailByd(id: event.id);
-        emit(UserDetailLoadedState(userFullList: userFullList));
+        final UserPreview userPreview =
+            await userUseCase.getUserDetailById(id: event.id);
+        emit(UserDetailLoadedState(userPreview: userPreview));
       } catch (e) {
         print('фывфвфывфывфвфвфы$e');
+        emit(UserErrorState(error: CatchException.convertException(e)));
+      }
+    });
+
+    on<CreateUserEvent>((event, emit) async {
+      emit(UserLoadingState());
+      try {
+        await userUseCase.createUser(user: event.user);
+      } catch (e) {
+        print('error create user $e');
         emit(UserErrorState(error: CatchException.convertException(e)));
       }
     });

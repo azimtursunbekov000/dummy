@@ -28,13 +28,13 @@ class ApiRequester {
     }
   }
 
-  Future<Response> toPost(String url) async {
+  Future<Response> toPost(String url, {dynamic data}) async {
     Dio dio = await initDio();
 
     try {
       // Добавляем заголовок app-id к каждому POST запросу
       dio.options.headers['app-id'] = appId;
-      return dio.post(url);
+      return await dio.post(url, data: data);
     } catch (e) {
       throw CatchException.convertException(e);
     }

@@ -10,14 +10,14 @@ class UserRepositoryImpl implements UserRepository {
   ApiRequester apiRequester = ApiRequester();
 
   @override
-  Future<DataModel> getAllUsers() async {
+  Future<UserDataModel> getAllUsers() async {
     try {
       Response response = await apiRequester.toGet('user');
 
       log('getAllUsers response statusCode == ${response.statusCode}');
       log('getAllUsers response data == ${response.data}');
 
-      return DataModel.fromJson(response.data);
+      return UserDataModel.fromJson(response.data);
     } catch (e) {
       print('error $e');
       throw CatchException.convertException(e);
@@ -35,6 +35,16 @@ class UserRepositoryImpl implements UserRepository {
     } catch (e) {
       print('error by id $e'.toString());
       throw CatchException.convertException(e);
+    }
+  }
+
+  @override
+  Future<void> createUser({required UserPreview user}) async {
+    try {
+      await apiRequester.toPost('user/create', data: user.toJson());
+    } catch (e) {
+      log('erroe create impl $e');
+      // throw CatchException.convertException(e);
     }
   }
 }

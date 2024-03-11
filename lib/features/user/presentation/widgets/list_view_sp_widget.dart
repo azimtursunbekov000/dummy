@@ -15,22 +15,33 @@ class ListViewSeparatedContent extends StatelessWidget {
     final userModelList = (bloc.state as UserLoadedState).userModelList;
 
     return ListView.separated(
+      padding: EdgeInsets.zero,
       itemCount: userModelList.data.length,
       itemBuilder: (context, index) {
         return Container(
           height: 60.h,
           margin: EdgeInsets.symmetric(
             horizontal: 10.w,
-            vertical: 10.h,
+          ),
+          decoration: BoxDecoration(
+            color: Colors.white,
+            borderRadius: BorderRadius.circular(15),
+            boxShadow: const [
+              BoxShadow(
+                blurRadius: 1,
+                spreadRadius: 1,
+                color: Colors.black12,
+              ),
+            ],
           ),
           child: Row(
             children: [
               CircleAvatar(
-                maxRadius: 30.0,
-                minRadius: 20.0,
+                maxRadius: 30.0.r,
+                minRadius: 10.0.r,
                 backgroundColor: Colors.transparent,
                 backgroundImage: NetworkImage(
-                  userModelList.data[index].picture,
+                  userModelList.data[index].picture ?? '',
                 ),
               ),
               SizedBox(width: 10.w),
@@ -61,7 +72,7 @@ class ListViewSeparatedContent extends StatelessWidget {
         );
       },
       separatorBuilder: (context, index) {
-        return SizedBox(height: 5.h);
+        return SizedBox(height: 10.h);
       },
     );
   }
