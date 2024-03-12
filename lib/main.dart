@@ -1,3 +1,6 @@
+import 'package:dummy/features/post/data/repositories/post_repository_impl.dart';
+import 'package:dummy/features/post/domain/use_cases/post_use_cases.dart';
+import 'package:dummy/features/post/presentation/logic/bloc/post_bloc.dart';
 import 'package:dummy/features/user/data/repositories/user_repository_impl.dart';
 import 'package:dummy/features/user/domain/use_cases/user_use_cases.dart';
 import 'package:dummy/features/user/presentation/logic/bloc/user_bloc.dart';
@@ -31,11 +34,19 @@ class MyApp extends StatelessWidget {
                 ),
               ),
             ),
+
+            BlocProvider<PostBloc>(
+              create: (context) => PostBloc(
+                PostUseCases(
+                  postRepository: PostRepositoryImpl(),
+                ),
+              ),
+            ),
+
             //
           ],
           child: MaterialApp.router(
             theme: ThemeData(
-              
               useMaterial3: true,
             ),
             routerConfig: router,

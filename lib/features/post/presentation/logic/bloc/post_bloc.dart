@@ -20,5 +20,17 @@ class PostBloc extends Bloc<PostEvent, PostState> {
         emit(PostErrorState(error: CatchException.convertException(e)));
       }
     });
+
+
+    on<GetDetailPostByIdEvent>((event, emit) async {
+      emit(PostLoadingState());
+      try {
+        final PostPreview postModel = await postUseCases.getPostById(id: event.id);
+        emit(PostDetailLoadedState(postPreview: postModel));
+      } catch (e) {
+        print("error post bloc $e");
+        emit(PostErrorState(error: CatchException.convertException(e)));
+      }
+    });
   }
 }

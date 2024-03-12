@@ -13,6 +13,12 @@ class PostLoadedState extends PostState {
   PostLoadedState({required this.postPreview});
 }
 
+class PostDetailLoadedState extends PostState {
+  final PostPreview postPreview;
+
+  PostDetailLoadedState({required this.postPreview});
+}
+
 class PostErrorState extends PostState {
   final CatchException error;
 

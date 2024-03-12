@@ -45,7 +45,9 @@ class PostListViewWidget extends StatelessWidget {
                     Navigator.push(
                       context,
                       MaterialPageRoute(
-                        builder: (context) => const PostDetailScreen(),
+                        builder: (context) => PostDetailScreen(
+                          id: postPreviewList.data[index].id,
+                        ),
                       ),
                     );
                   },
@@ -62,3 +64,5 @@ class PostListViewWidget extends StatelessWidget {
     );
   }
 }
+
+//PostDetailScreen

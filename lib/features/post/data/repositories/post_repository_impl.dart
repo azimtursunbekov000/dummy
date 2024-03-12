@@ -6,7 +6,7 @@ import 'package:dummy/features/post/domain/repositories/post_repository.dart';
 import 'package:dummy/internal/helpers/api_requester.dart';
 import 'package:dummy/internal/helpers/catch_exception.dart';
 
-class PostUserRepositoryImpl implements PostRepository {
+class PostRepositoryImpl implements PostRepository {
   ApiRequester apiRequester = ApiRequester();
   @override
   Future<PostDataModel> getAllPost() async {

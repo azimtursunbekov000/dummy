@@ -4,7 +4,7 @@ import 'package:dummy/features/user/presentation/screens/main_user_screen.dart';
 import 'package:flutter/material.dart';
 
 class BottomNavBarScreen extends StatefulWidget {
-  const BottomNavBarScreen({super.key});
+  const BottomNavBarScreen({Key? key});
 
   @override
   State<BottomNavBarScreen> createState() => _BottomNavBarState();
@@ -12,22 +12,31 @@ class BottomNavBarScreen extends StatefulWidget {
 
 class _BottomNavBarState extends State<BottomNavBarScreen> {
   int selectedIndex = 0;
+  late List<Widget> screens;
+
+  @override
+  void initState() {
+    super.initState();
+    screens = [
+      MainUserScreen(),
+      MainPostScreen(),
+      SettingsScreen(),
+    ];
+  }
+
   void onItemTab(int index) {
     setState(() {
       selectedIndex = index;
     });
   }
 
-  List<Widget> screens = const [
-    MainUserScreen(),
-    MainPostScreen(),
-    SettingsScreen()
-  ];
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: screens.elementAt(selectedIndex),
+      body: IndexedStack(
+        index: selectedIndex,
+        children: screens,
+      ),
       bottomNavigationBar: BottomNavigationBar(
         type: BottomNavigationBarType.fixed,
         showUnselectedLabels: true,

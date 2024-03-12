@@ -16,7 +16,7 @@ class MainPostScreen extends StatelessWidget {
     return BlocProvider(
       create: (context) => PostBloc(
         PostUseCases(
-          postRepository: PostUserRepositoryImpl(),
+          postRepository: PostRepositoryImpl(),
         ),
       )..add(
           GetAllPostEvent(),
@@ -35,6 +35,11 @@ class MainPostScreen extends StatelessWidget {
                 child: BlocConsumer<PostBloc, PostState>(
                   listener: (context, state) {},
                   builder: (context, state) {
+                    if (state is PostLoadingState) {
+                      return RefreshProgressIndicator(
+                        
+                      );
+                    }
                     if (state is PostLoadedState) {
                       return const PostListViewWidget();
                     }
@@ -48,6 +53,7 @@ class MainPostScreen extends StatelessWidget {
         floatingActionButton: Padding(
           padding: const EdgeInsets.only(bottom: 35.0),
           child: FloatingActionButton(
+            heroTag: "btn1",
             onPressed: () {
               Navigator.push(
                 context,
