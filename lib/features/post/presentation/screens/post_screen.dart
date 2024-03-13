@@ -29,7 +29,9 @@ class MainPostScreen extends StatelessWidget {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.stretch,
             children: [
-              const SearchWidget(),
+              const SearchWidget(
+                
+              ),
               SizedBox(height: 10.h),
               Expanded(
                 child: BlocConsumer<PostBloc, PostState>(

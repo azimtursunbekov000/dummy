@@ -49,7 +49,9 @@ class _BottomNavBarState extends State<BottomNavBarScreen> {
             backgroundColor: Colors.white,
           ),
           BottomNavigationBarItem(
-            icon: Icon(Icons.local_post_office),
+            icon: Icon(
+              Icons.local_post_office,
+            ),
             label: 'Посты',
             backgroundColor: Colors.white,
           ),

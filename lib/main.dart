@@ -1,15 +1,15 @@
+import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:provider/provider.dart';
+import 'package:dummy/features/settings/presentation/screens/theme_manager.dart';
 import 'package:dummy/features/post/data/repositories/post_repository_impl.dart';
 import 'package:dummy/features/post/domain/use_cases/post_use_cases.dart';
 import 'package:dummy/features/post/presentation/logic/bloc/post_bloc.dart';
 import 'package:dummy/features/user/data/repositories/user_repository_impl.dart';
 import 'package:dummy/features/user/domain/use_cases/user_use_cases.dart';
 import 'package:dummy/features/user/presentation/logic/bloc/user_bloc.dart';
-import 'package:dummy/features/user/presentation/screens/main_user_screen.dart';
 import 'package:dummy/internal/components/app_routes.dart';
-import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:provider/provider.dart';
 
 void main() {
   runApp(const MyApp());
@@ -34,7 +34,6 @@ class MyApp extends StatelessWidget {
                 ),
               ),
             ),
-
             BlocProvider<PostBloc>(
               create: (context) => PostBloc(
                 PostUseCases(
@@ -42,14 +41,19 @@ class MyApp extends StatelessWidget {
                 ),
               ),
             ),
-
-            //
-          ],
-          child: MaterialApp.router(
-            theme: ThemeData(
-              useMaterial3: true,
+            ChangeNotifierProvider(
+              create: (context) => ThemeProvider(),
             ),
-            routerConfig: router,
+          ],
+          child: Builder(
+            builder: (context) {
+              return MaterialApp.router(
+                debugShowCheckedModeBanner: false,
+                title: 'Flutter Demo',
+                theme: context.watch<ThemeProvider>().theme,
+                routerConfig: router,
+              );
+            },
           ),
         );
       },
