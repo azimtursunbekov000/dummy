@@ -11,8 +11,18 @@ import 'package:dummy/features/user/domain/use_cases/user_use_cases.dart';
 import 'package:dummy/features/user/presentation/logic/bloc/user_bloc.dart';
 import 'package:dummy/internal/components/app_routes.dart';
 
-void main() {
-  runApp(const MyApp());
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+
+  final themeManager = ThemeManager();
+  await themeManager.loadTheme();
+
+  runApp(
+    ChangeNotifierProvider.value(
+      value: themeManager,
+      child: const MyApp(),
+    ),
+  );
 }
 
 class MyApp extends StatelessWidget {
@@ -41,16 +51,13 @@ class MyApp extends StatelessWidget {
                 ),
               ),
             ),
-            ChangeNotifierProvider(
-              create: (context) => ThemeProvider(),
-            ),
           ],
           child: Builder(
             builder: (context) {
+              final themeManager = Provider.of<ThemeManager>(context);
               return MaterialApp.router(
                 debugShowCheckedModeBanner: false,
-                title: 'Flutter Demo',
-                theme: context.watch<ThemeProvider>().theme,
+                theme: themeManager.currentTheme,
                 routerConfig: router,
               );
             },

@@ -1,38 +1,39 @@
-import 'package:dummy/internal/components/app_colors.dart';
 import 'package:flutter/material.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
-class ThemeProvider extends ChangeNotifier {
-  bool isDarkTheme = false;
+enum ThemeType {
+  light,
+  black,
+}
 
-  ThemeData theme = ThemeData();
+class ThemeManager with ChangeNotifier {
+  ThemeData _currentTheme = ThemeData.light();
 
-  Color changeTextColor() {
-    return isDarkTheme ? Colors.white : Colors.black;
-  }
+  ThemeData get currentTheme => _currentTheme;
 
-  Color changeTextFieldColor() {
-    return isDarkTheme ? Color(0xff0B1E2D) : Colors.white;
-  }
-
-  Color changeContainerColor() {
-    return isDarkTheme ? Color(0xff0B1E2D) : Colors.white;
-  }
-
-  void changeTheme() {
-    isDarkTheme = !isDarkTheme;
-
-    theme = ThemeData(
-      scaffoldBackgroundColor:
-          isDarkTheme ? AppColors.darkBgColor : AppColors.lightBgColor,
-      appBarTheme: AppBarTheme(
-        backgroundColor:
-            isDarkTheme ? AppColors.darkBgColor : AppColors.lightBgColor,
-      ),
-      bottomNavigationBarTheme: BottomNavigationBarThemeData(
-        backgroundColor:
-            isDarkTheme ? AppColors.darkNavBarBgColor : AppColors.lightBgColor,
-      ),
+  Future<void> loadTheme() async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    ThemeType? themeType = ThemeType.values[prefs.getInt('themeType') ?? 0];
+    _setTheme(
+      themeType,
     );
+  }
+
+  void _setTheme(ThemeType themeType) {
+    switch (themeType) {
+      case ThemeType.light:
+        _currentTheme = ThemeData.light();
+        break;
+      case ThemeType.black:
+        _currentTheme = ThemeData.dark();
+        break;
+    }
     notifyListeners();
+  }
+
+  Future<void> changeTheme(ThemeType themeType) async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    await prefs.setInt('themeType', themeType.index);
+    _setTheme(themeType);
   }
 }
