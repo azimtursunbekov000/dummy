@@ -23,29 +23,13 @@ class _SettingsScreenState extends State<SettingsScreen> {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Container(
-              height: 80.h,
-              child: Row(
-                children: [
-                  CircleAvatar(
-                    radius: 50.r,
-                    child: Image.network(
-                      "https://img.freepik.com/premium-vector/user-profile-icon-flat-style-member-avatar-vector-illustration-isolated-background-human-permission-sign-business-concept_157943-15752.jpg",
-                      fit: BoxFit.cover,
-                    ),
-                  ),
-                ],
-              ),
-            ),
-            SizedBox(height: 30.h),
-            SizedBox(height: 36.h),
-            Divider(),
-            Text(
+            const Divider(),
+            const Text(
               "Внешний вид",
             ),
-            const BlackThemeWidget(),
+            const ThemeWidget(),
             SizedBox(height: 30.h),
-            Expanded(
+            const Expanded(
               flex: -1,
               child: Text(
                 "О приложении",
@@ -54,25 +38,24 @@ class _SettingsScreenState extends State<SettingsScreen> {
             SizedBox(height: 10.h),
             const Expanded(
               flex: -1,
-              child: Text(
-                  "Зигерионцы помещают Джерри и Рика в симуляцию, чтобы узнать секрет изготовления концентрированной темной материи."),
+              child: Text("."),
             ),
             SizedBox(height: 30.h),
-            Expanded(
+            const Expanded(
               flex: -1,
               child: Divider(),
             ),
-            Expanded(
+            const Expanded(
               flex: -1,
               child: Text(
                 "Версия приложения",
               ),
             ),
             SizedBox(height: 10.h),
-            Expanded(
+            const Expanded(
               flex: -1,
               child: Text(
-                "Rick & Morty  v1.0.0",
+                "Dummy  v1.0.0",
               ),
             ),
           ],

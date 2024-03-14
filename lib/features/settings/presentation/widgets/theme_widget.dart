@@ -3,14 +3,14 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:provider/provider.dart';
 
-class BlackThemeWidget extends StatefulWidget {
-  const BlackThemeWidget({Key? key}) : super(key: key);
+class ThemeWidget extends StatefulWidget {
+  const ThemeWidget({Key? key}) : super(key: key);
 
   @override
-  _BlackThemeWidgetState createState() => _BlackThemeWidgetState();
+  _ThemeWidgetState createState() => _ThemeWidgetState();
 }
 
-class _BlackThemeWidgetState extends State<BlackThemeWidget> {
+class _ThemeWidgetState extends State<ThemeWidget> {
   bool _isDarkThemeEnabled = false;
 
   @override
@@ -50,7 +50,7 @@ class _BlackThemeWidgetState extends State<BlackThemeWidget> {
                                 _isDarkThemeEnabled = value!;
                                 Provider.of<ThemeManager>(context,
                                         listen: false)
-                                    .changeTheme(value!
+                                    .changeTheme(value
                                         ? ThemeType.black
                                         : ThemeType.light);
                               });
