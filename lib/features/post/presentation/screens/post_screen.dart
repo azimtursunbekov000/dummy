@@ -9,7 +9,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class MainPostScreen extends StatelessWidget {
-  const MainPostScreen({super.key});
+  const MainPostScreen({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -23,49 +23,48 @@ class MainPostScreen extends StatelessWidget {
         ),
       child: Scaffold(
         backgroundColor: Colors.white,
-        // appBar: AppBar(),
         body: Padding(
           padding: EdgeInsets.only(top: 80.h, bottom: 10.h),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.stretch,
-            children: [
-              const SearchWidget(
-                
-              ),
-              SizedBox(height: 10.h),
-              Expanded(
-                child: BlocConsumer<PostBloc, PostState>(
-                  listener: (context, state) {},
-                  builder: (context, state) {
-                    if (state is PostLoadingState) {
-                      return RefreshProgressIndicator(
-                        
-                      );
-                    }
-                    if (state is PostLoadedState) {
-                      return const PostListViewWidget();
-                    }
-                    return const SizedBox.shrink();
-                  },
+          child: RefreshIndicator(
+            onRefresh: () async {
+              BlocProvider.of<PostBloc>(context).add(GetAllPostEvent());
+            },
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.stretch,
+              children: [
+                const SearchWidget(),
+                SizedBox(height: 10.h),
+                Expanded(
+                  child: BlocConsumer<PostBloc, PostState>(
+                    listener: (context, state) {},
+                    builder: (context, state) {
+                      if (state is PostLoadingState) {
+                        return const Center(
+                          child: CircularProgressIndicator(),
+                        );
+                      }
+                      if (state is PostLoadedState) {
+                        return PostListViewWidget();
+                      }
+                      return SizedBox.shrink();
+                    },
+                  ),
                 ),
-              ),
-            ],
+              ],
+            ),
           ),
         ),
-        floatingActionButton: Padding(
-          padding: const EdgeInsets.only(bottom: 35.0),
-          child: FloatingActionButton(
-            heroTag: "btn1",
-            onPressed: () {
-              Navigator.push(
-                context,
-                MaterialPageRoute(
-                  builder: (contex) => const UserCreateScreen(),
-                ),
-              );
-            },
-            child: const Icon(Icons.add),
-          ),
+        floatingActionButton: FloatingActionButton(
+          heroTag: "btn1",
+          onPressed: () {
+            Navigator.push(
+              context,
+              MaterialPageRoute(
+                builder: (context) => const UserCreateScreen(),
+              ),
+            );
+          },
+          child: const Icon(Icons.add),
         ),
       ),
     );
