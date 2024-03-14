@@ -1,3 +1,4 @@
+import 'package:dummy/features/user/data/models/user_created_model.dart';
 import 'package:dummy/features/user/data/models/user_preview_model.dart';
 
 abstract class UserRepository {
@@ -14,5 +15,5 @@ abstract class UserRepository {
   ///RU: Создание пользователя
   ///
   ///EN:Create user
-  Future<void> createUser({required UserPreview user});
+  Future<UserCreated?> createUser({required UserCreated user});
 }

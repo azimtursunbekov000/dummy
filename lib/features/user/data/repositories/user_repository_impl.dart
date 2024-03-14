@@ -1,6 +1,7 @@
 import 'dart:developer';
 
 import 'package:dio/dio.dart';
+import 'package:dummy/features/user/data/models/user_created_model.dart';
 import 'package:dummy/features/user/data/models/user_preview_model.dart';
 import 'package:dummy/features/user/domain/repositories/user_repository.dart';
 import 'package:dummy/internal/helpers/api_requester.dart';
@@ -39,12 +40,15 @@ class UserRepositoryImpl implements UserRepository {
   }
 
   @override
-  Future<void> createUser({required UserPreview user}) async {
+  Future<UserCreated?> createUser({required UserCreated user}) async {
     try {
-      await apiRequester.toPost('user/create', data: user.toJson());
+      Response response =
+          await apiRequester.toPost('user/create', data: user.toJson());
+      print('User created: ${response.data}');
+      print('User created: ${createUser(user: user)}');
     } catch (e) {
-      log('erroe create impl $e');
-      // throw CatchException.convertException(e);
+      log('error create impl $e');
     }
+    return null;
   }
 }

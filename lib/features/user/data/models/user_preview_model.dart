@@ -62,7 +62,8 @@ class UserPreview {
       dateOfBirth: json['dateOfBirth'],
       registerDate: json['registerDate'],
       phone: json['phone'],
-      location: json['location'] != null ? Location.fromJson(json['location']) : null,
+      location:
+          json['location'] != null ? Location.fromJson(json['location']) : null,
     );
   }
 
@@ -82,6 +83,8 @@ class UserPreview {
     };
   }
 }
+
+
 
 class Location {
   final String street;

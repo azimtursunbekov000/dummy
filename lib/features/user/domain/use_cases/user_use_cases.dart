@@ -1,3 +1,4 @@
+import 'package:dummy/features/user/data/models/user_created_model.dart';
 import 'package:dummy/features/user/data/models/user_preview_model.dart';
 import 'package:dummy/features/user/domain/repositories/user_repository.dart';
 
@@ -14,7 +15,7 @@ class UserUseCase {
     return await userRepository.getUserDetailById(id: id);
   }
 
-  Future<void> createUser({required UserPreview user}) async {
+  Future<UserCreated?> createUser({required UserCreated user}) async {
     return await userRepository.createUser(user: user);
   }
 }

@@ -13,7 +13,7 @@ class GetUserByIdEvent extends UserEvent {
 
 //создание пользователя 
 class CreateUserEvent extends UserEvent {
-  final UserPreview user;
+  final UserCreated user;
 
   CreateUserEvent({required this.user});
 }

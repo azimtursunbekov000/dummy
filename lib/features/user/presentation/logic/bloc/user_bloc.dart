@@ -1,4 +1,5 @@
 import 'package:bloc/bloc.dart';
+import 'package:dummy/features/user/data/models/user_created_model.dart';
 import 'package:dummy/features/user/data/models/user_preview_model.dart';
 import 'package:dummy/features/user/domain/use_cases/user_use_cases.dart';
 import 'package:dummy/internal/helpers/catch_exception.dart';
